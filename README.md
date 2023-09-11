@@ -61,6 +61,8 @@
 ## Авторы
 
 - [@machinee](https://github.com/freeeakn)
+- [@andreyakakudryash](https://github.com/andreyakakudryash)
+- [@SD-Kalsky](https://github.com/SD-Kalsky)
 - Другие участники проекта (Все подпишитесь на меня на гитхабе и я вас укажу)
 
 ## Лицензия
