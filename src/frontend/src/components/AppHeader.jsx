@@ -5,6 +5,7 @@ import './header.css';
 
 const AppHeader = () => {
   const [width, isScreenSm, isScreenMd, isScreenLg, isScreenXl, isScreenXxl] = useResize();
+
   const switchLogo = () => {
     if (isScreenSm) {
       return (
@@ -34,6 +35,7 @@ const AppHeader = () => {
       )
     }
   };
+  
     return (
       <>
       <header className=" text-xs fixed top-0 z-10 w-full md:text-base">
