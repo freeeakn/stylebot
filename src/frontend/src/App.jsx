@@ -9,6 +9,7 @@ function App() {
     <>
     <AppHeader />
     <img src="lookovitsa.svg" alt="" />
+    <img src="lookovitsa.svg" alt="" />
     </>
   )
 }
