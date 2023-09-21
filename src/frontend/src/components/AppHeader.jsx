@@ -1,8 +1,7 @@
 // import { useState, useEffect } from "react";
-// import { motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom';
 import useResize from "./hooks/useResize.jsx"
-import './header.css';
 
 const AppHeader = () => {
   const [width, isScreenSm, isScreenMd, isScreenLg, isScreenXl, isScreenXxl] = useResize();
@@ -27,11 +26,11 @@ const AppHeader = () => {
     } else {
       return (
         <>
-        <a href="" className="h-10 ">
+        <NavLink to="/" className="h-10 ">
           <img
           className="h-full"
           src="lookovitsa.svg" alt="" />
-        </a>
+        </NavLink>
         </>
       )
     }
@@ -39,7 +38,11 @@ const AppHeader = () => {
   
     return (
       <>
-      <header className=" text-xs fixed top-0 z-10 w-full md:text-base">
+      <motion.header
+      className=" text-xs fixed top-0 z-10 w-full md:text-base"
+      initial={{y:-100}}
+      animate={{y:0}}
+      >
         <div className=" relative mt-4 mx-4">
           <nav className="wrapper rounded-2xl">
 
@@ -60,9 +63,14 @@ const AppHeader = () => {
                 </ul>
               </div>
 
-              <div className="flex flex-col justify-center items-center">
+              <motion.div
+              className="flex flex-col justify-center items-center"
+              initial={{y:-100}}
+              animate={{y:0}}
+              transition={{ delay: 0.15 }}
+              >
                 {switchLogo()}
-              </div>
+              </motion.div>
 
               <div className="flex justify-end basis-1/2 p-2">
                 <ul className="flex w-auto justify-center gap-5">
@@ -81,7 +89,7 @@ const AppHeader = () => {
 
           </nav>
         </div>
-      </header>
+      </motion.header>
       <Outlet />
       </>
     )
