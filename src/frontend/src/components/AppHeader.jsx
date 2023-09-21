@@ -1,30 +1,40 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom';
 import useResize from "./hooks/useResize.jsx"
 
 const AppHeader = () => {
   const [width, isScreenSm, isScreenMd, isScreenLg, isScreenXl, isScreenXxl] = useResize();
+  const logo = [
+    'text.svg',
+    'text_2.svg'
+  ]
 
-  const switchLogo = () => {
-    if (isScreenSm) {
-      return (
-        <>
-        <NavLink to="/" className="w-1/2 ">
+  const [path, setPath] = useState('text.svg');
+
+  const [temp, setTemp] = useState(
+    <>
+        <motion.NavLink
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        transition={{ duration: 2 }}
+        to="/" className="w-1/2 ">
           <img
           className="w-full"
-          src="text.svg" alt="" />
-        </NavLink>
+          src={path} alt="" />
+        </motion.NavLink>
 
         <NavLink to="/" className="w-1/3">
           <img
           className="w-full"
           src="sub_text.svg" alt="" />
         </NavLink>
-        </>
-      )
-    } else {
-      return (
+    </>
+  )
+
+  useEffect(() => {
+    if (!isScreenSm) {
+      setTemp(
         <>
         <NavLink to="/" className="h-16">
           <img
@@ -33,8 +43,28 @@ const AppHeader = () => {
         </NavLink>
         </>
       )
+    } else {
+      setTemp(
+      <>
+        <motion.NavLink
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        transition={{ duration: 2 }}
+        to="/" className="w-1/2 ">
+          <img
+          className="w-full"
+          src={path} alt="" />
+        </motion.NavLink>
+
+        <NavLink to="/" className="w-1/3">
+          <img
+          className="w-full"
+          src="sub_text.svg" alt="" />
+        </NavLink>
+      </>
+      )
     }
-  };
+  }, [isScreenSm, path])
   
     return (
       <>
@@ -69,7 +99,7 @@ const AppHeader = () => {
               animate={{y:0}}
               transition={{ delay: 0.2 }}
               >
-                {switchLogo()}
+                {temp}
               </motion.div>
 
               <div className="flex justify-end basis-1/2 p-2">

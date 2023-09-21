@@ -13,7 +13,7 @@ function App() {
       <BrowserRouter>
         <AppHeader />
         <div className='parallax'>
-          <div className=' mt-28 mx-4'>
+          <div className=' mt-24 mx-4'>
             <Routes>
               <Route index path="/" element={<AppCatalog />} />
             </Routes>
