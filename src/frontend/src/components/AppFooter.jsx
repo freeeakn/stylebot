@@ -4,9 +4,9 @@ function AppFooter() {
         <>
         <footer className=" text-xs z-10 w-full md:text-base">
           <div className=" relative m-4">
-            <nav className="wrapper rounded-2xl">
+            <nav className="glass p-4 flex flex-col items-center gap-2 lg:gap-0 lg:flex-row rounded-2xl">
   
-                <div className="flex basis-1/2 p-2">
+                <div className="flex lg:basis-1/2 p-2">
                   <ul className="flex w-auto justify-center gap-5">
                     <li>
                       <a href="https://github.com/freeeakn"
@@ -25,7 +25,7 @@ function AppFooter() {
 
                 <div className="flex items-center">Tubiki&copy;2023</div>
   
-                <div className="flex justify-end basis-1/2 p-2">
+                <div className="flex justify-end lg:basis-1/2 p-2">
                   <ul className="flex w-auto justify-center gap-5">
                     <li>
                       <a href="https://github.com/SD-Kalsky"

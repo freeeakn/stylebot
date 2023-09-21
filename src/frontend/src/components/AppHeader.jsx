@@ -26,7 +26,7 @@ const AppHeader = () => {
     } else {
       return (
         <>
-        <NavLink to="/" className="h-10 ">
+        <NavLink to="/" className="h-16">
           <img
           className="h-full"
           src="lookovitsa.svg" alt="" />
@@ -67,7 +67,7 @@ const AppHeader = () => {
               className="flex flex-col justify-center items-center"
               initial={{y:-100}}
               animate={{y:0}}
-              transition={{ delay: 0.15 }}
+              transition={{ delay: 0.2 }}
               >
                 {switchLogo()}
               </motion.div>
