@@ -1,5 +1,6 @@
 // import { useState, useEffect } from "react";
 // import { motion } from "framer-motion"
+import { NavLink, Outlet } from 'react-router-dom';
 import useResize from "./hooks/useResize.jsx"
 import './header.css';
 
@@ -10,17 +11,17 @@ const AppHeader = () => {
     if (isScreenSm) {
       return (
         <>
-        <a href="" className="w-1/2 ">
+        <NavLink to="/" className="w-1/2 ">
           <img
           className="w-full"
           src="text.svg" alt="" />
-        </a>
+        </NavLink>
 
-        <a href="" className="w-1/3">
+        <NavLink to="/" className="w-1/3">
           <img
           className="w-full"
           src="sub_text.svg" alt="" />
-        </a>
+        </NavLink>
         </>
       )
     } else {
@@ -45,14 +46,16 @@ const AppHeader = () => {
               <div className="flex basis-1/2 p-2">
                 <ul className="flex w-auto justify-center gap-5">
                   <li>
-                    <a href="#" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                    <NavLink to="/"
+                    className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200"
+                    >
                       Catalog
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
-                    <a href="#" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                    <NavLink to="/ai" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
                       AI
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -69,9 +72,9 @@ const AppHeader = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                    <NavLink to="/cart" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
                       Cart
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </div>
@@ -79,6 +82,7 @@ const AppHeader = () => {
           </nav>
         </div>
       </header>
+      <Outlet />
       </>
     )
 };
