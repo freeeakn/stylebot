@@ -9,14 +9,16 @@ function App() {
 
   return (
     <>
-    <BrowserRouter>
-      <AppHeader />
-      <div className=' mt-[88px] mx-4'>
-        <Routes>
-          <Route index path="/" element={<AppCatalog />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+      <BrowserRouter>
+        <AppHeader />
+        <div className='parallax'>
+          <div className=' mt-[88px] mx-4'>
+            <Routes>
+              <Route index path="/" element={<AppCatalog />} />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
     </>
   )
 }
