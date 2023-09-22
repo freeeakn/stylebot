@@ -79,7 +79,7 @@ const AppHeader = () => {
               <div className="flex basis-1/2 p-2">
                 <ul className="flex w-auto justify-center gap-5">
                   <li>
-                    <NavLink to="/"
+                    <NavLink to="/catalog"
                     className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200"
                     >
                       Catalog
@@ -93,14 +93,15 @@ const AppHeader = () => {
                 </ul>
               </div>
 
-              <motion.div
+              <motion.NavLink
+              to="/"
               className="flex flex-col justify-center items-center"
               initial={{y:-100}}
               animate={{y:0}}
               transition={{ delay: 0.2 }}
               >
                 {temp}
-              </motion.div>
+              </motion.NavLink>
 
               <div className="flex justify-end basis-1/2 p-2">
                 <ul className="flex w-auto justify-center gap-5">
@@ -110,9 +111,9 @@ const AppHeader = () => {
                     </a>
                   </li>
                   <li>
-                    <NavLink to="/cart" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                    <a className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
                       Cart
-                    </NavLink>
+                    </a>
                   </li>
                 </ul>
               </div>
