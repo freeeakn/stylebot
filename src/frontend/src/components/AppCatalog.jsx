@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-function AppCatalog(itemsArr) {
+function AppCatalog(props) {
     const itemAnimation = {
         hidden: {
           y: -100,

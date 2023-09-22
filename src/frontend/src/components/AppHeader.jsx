@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom';
 import useResize from "./hooks/useResize.jsx"
+import AppCart from "./popup/AppCart.jsx";
 
-const AppHeader = () => {
+const AppHeader = (props) => {
   const [width, isScreenSm, isScreenMd, isScreenLg, isScreenXl, isScreenXxl] = useResize();
   const logo = [
     'text.svg',
     'text_2.svg'
   ]
 
+  const [visiblity, setVisiblity] = useState(false);
   const [path, setPath] = useState('text.svg');
 
   const [temp, setTemp] = useState(
@@ -21,7 +23,7 @@ const AppHeader = () => {
         to="/" className="w-1/2 ">
           <img
           className="w-full"
-          src={path} alt="" />
+          src={path} alt="lookotitsa" />
         </motion.NavLink>
 
         <NavLink to="/" className="w-1/3">
@@ -39,7 +41,7 @@ const AppHeader = () => {
         <NavLink to="/" className="h-16">
           <img
           className="h-full"
-          src="lookovitsa.svg" alt="" />
+          src="lookovitsa.svg" alt="lookovitsa" />
         </NavLink>
         </>
       )
@@ -110,10 +112,23 @@ const AppHeader = () => {
                       Bot
                     </a>
                   </li>
-                  <li>
-                    <a className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
-                      Cart
+                  <li className=" relative">
+                    <a href="#" onClick={() => setVisiblity(!visiblity)} className=" p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                      {visiblity ? (
+                        <span className=" mx-[0.175rem]">
+                          &#9650;
+                        </span>
+                      ) : (
+                        <>
+                        Cart
+                        </>
+                      )}
                     </a>
+                    <AnimatePresence>
+                      {visiblity && (
+                        <AppCart cart={props.cartArr}/>
+                      )}
+                    </AnimatePresence>
                   </li>
                 </ul>
               </div>

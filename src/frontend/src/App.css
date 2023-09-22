@@ -23,6 +23,7 @@ body {
 
     background-image: url("bg-template.svg");
     background-size:contain;
+    background-attachment: fixed;
 }
 
 .parallax-layer {
