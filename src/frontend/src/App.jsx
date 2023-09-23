@@ -161,21 +161,22 @@ function App() {
   const [cart, setCart] = useState([ ]);
 
   const addToCart = (item) => {
-    let temp = false;
+    setCart([...cart, item]);
+  };
+
+  const removeFromCart = (item) => {
+    let temp = [];
     for (let i = 0; i < cart.length; i++) {
-      if (item.id == cart[i].id) {
-        cart[i].count += 1;
-        temp = true;
-      }
+      if (item != cart[i])
+        temp.push(cart[i])
     }
-    if (!temp) setCart([...cart, item]);
-    temp = false;
+    setCart(temp)
   };
 
   return (
     <>
       <BrowserRouter>
-        <AppHeader cartArr={cart} cartSetter={setCart}/>
+        <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart}/>
         <div className='parallax'>
           <div className=' mt-24 mx-4'>
             <Routes>
