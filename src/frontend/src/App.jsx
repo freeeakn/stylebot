@@ -9,26 +9,168 @@ import AppMain from './components/AppMain.jsx';
 
 function App() {
 
-  let i = 0;
+  let i = -1;
+    const [items, setItems] = useState([
+        {
+            id: i++,
+            count: 1,
+            title: 'Tshort',
+            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
+            desc: 'lorem ipsum dolor sit amet, consectetur',
+            category: 'Tshort',
+            price: '12.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Tshort2',
+            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
+            desc: 'lorem ipsum dolor sits amet, consectetur',
+            category: 'Tshort',
+            price: '11.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Tshort3',
+            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
+            desc: 'lorem ipsum dolor sits amet, consectetur',
+            category: 'Tshort',
+            price: '10.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipsum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '25.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Tshort',
+            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
+            desc: 'lorem ipsum dolor sit amet, consectetur',
+            category: 'Tshort',
+            price: '12.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Tshort2',
+            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
+            desc: 'lorem ipsum dolor sits amet, consectetur',
+            category: 'Tshort',
+            price: '11.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Tshort3',
+            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
+            desc: 'lorem ipsum dolor sits amet, consectetur',
+            category: 'Tshort',
+            price: '10.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipsum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '25.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        {
+            id: i++,
+            count: 1,
+            title: 'Sweater2',
+            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
+            desc: 'lorem ipdssum dolor sits amet, consectetur',
+            category: 'sweater',
+            price: '50.99',
+        },
+        
+    ])
 
-  const [cart, setCart] = useState([
-    {
-        id: i++,
-        title: 'Sweater2',
-        img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-        desc: 'lorem ipdssum dolor sits amet, consectetur',
-        category: 'sweater',
-        price: '50.99',
-    },
-    {
-        id: i++,
-        title: 'Sweater2',
-        img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-        desc: 'lorem ipdssum dolor sits amet, consectetur',
-        category: 'sweater',
-        price: '50.99',
-    },
-])
+  const [cart, setCart] = useState([ ]);
+
+  const addToCart = (item) => {
+    let temp = false;
+    for (let i = 0; i < cart.length; i++) {
+      if (item.id == cart[i].id) {
+        cart[i].count += 1;
+        temp = true;
+      }
+    }
+    if (!temp) setCart([...cart, item]);
+    temp = false;
+  };
 
   return (
     <>
@@ -38,7 +180,7 @@ function App() {
           <div className=' mt-24 mx-4'>
             <Routes>
               <Route index path="/" element={<AppMain />} />
-              <Route path="/catalog" element={<AppCatalog cart={cart} cartSetter={setCart}/>} />
+              <Route path="/catalog" element={<AppCatalog items={items} itemsSetter={setItems} onAdd={addToCart}/>} />
             </Routes>
           </div>
           <AppFooter />

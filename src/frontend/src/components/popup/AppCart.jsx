@@ -35,6 +35,7 @@ function AppCart(props) {
                 className=" shadow-xl"
                 >
                     {item.title}
+                    {item.count}
                 </div>
             ))}
             <div>
