@@ -189,10 +189,16 @@ function App() {
     setCart(temp)
   };
 
+  const sumCart = () => {
+    let summary = 0;
+    cart.forEach(cartItem => summary += Number.parseFloat(cartItem.price) * Number.parseInt(cartItem.count));
+    return summary.toFixed(2);
+  }
+
   return (
     <>
       <BrowserRouter>
-        <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart}/>
+        <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart} sumCart={sumCart}/>
         <div className='parallax'>
           <div className=' mt-24 mx-4'>
             <Routes>

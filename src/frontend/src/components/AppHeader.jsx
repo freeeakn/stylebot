@@ -126,7 +126,7 @@ const AppHeader = (props) => {
                     </a>
                     <AnimatePresence>
                       {visiblity && (
-                        <AppCart cart={props.cartArr} rmItem={props.rmItem}/>
+                        <AppCart cart={props.cartArr} rmItem={props.rmItem} sumCart={props.sumCart}/>
                       )}
                     </AnimatePresence>
                   </li>
