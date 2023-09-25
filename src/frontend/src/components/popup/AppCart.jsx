@@ -61,7 +61,10 @@ function AppCart(props) {
                     </div>
                     <div className="flex items-center gap-4">
                         <p>
-                            {item.price}$
+                            {item.count}x
+                        </p>
+                        <p>
+                            {item.price * item.count}$
                         </p>
                         <button onClick={() => props.rmItem(item)} className="flex items-center justify-center bg-slate-100 p-2 rounded-xl shadow-xl hover:bg-white hover:drop-shadow-xl duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">

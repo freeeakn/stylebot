@@ -161,14 +161,30 @@ function App() {
   const [cart, setCart] = useState([ ]);
 
   const addToCart = (item) => {
-    setCart([...cart, item]);
+    let isInArray = false;
+    let temp = [];
+    cart.forEach((cartItem) => {
+      if (cartItem.id === item.id) {
+        isInArray = true;
+        cartItem.count++;
+      }
+      temp.push(cartItem);
+    });
+    if (!isInArray)
+      setCart([...cart, item]);
+    else
+      setCart(temp);
   };
 
   const removeFromCart = (item) => {
     let temp = [];
     for (let i = 0; i < cart.length; i++) {
-      if (item != cart[i])
+      if (item.id != cart[i].id) {
         temp.push(cart[i])
+      } else if (cart[i].count > 1) {
+        cart[i].count--;
+        temp.push(cart[i]);
+      }
     }
     setCart(temp)
   };
