@@ -1,11 +1,13 @@
 import { useState } from 'react'
 // import axios from 'axios'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion'
 import './App.css'
 import AppHeader from './components/AppHeader.jsx'
 import AppCatalog from './components/AppCatalog.jsx';
 import AppFooter from './components/AppFooter.jsx';
 import AppMain from './components/AppMain.jsx';
+import AppItem from './components/popup/AppItem.jsx';
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
             desc: 'lorem ipsum dolor sit amet, consectetur',
             category: [
               'Tshort',
+              'brown'
             ],
             price: '12.99',
         },
@@ -193,6 +196,10 @@ function App() {
   const [cart, setCart] = useState([]);
   const [currentItems, setCurrentItems] = useState([...items]);
 
+  const [showItem, setShowItem] = useState(false);
+
+  const [fullItem, setFullItem] = useState({});
+
   const addToCart = (item) => {
     let isInArray = false;
     let temp = [];
@@ -235,15 +242,23 @@ function App() {
       setCurrentItems(items.filter(item => category === item.category[0]));
   }
 
+  const onShowItem = (item) => {
+    setFullItem(item);
+    setShowItem(!showItem);
+  };
+
   return (
     <>
       <BrowserRouter>
         <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart} sumCart={sumCart}/>
+        <AnimatePresence>
+          {showItem && <AppItem onShowItem={onShowItem} item={fullItem} onAdd={addToCart}/>}
+        </AnimatePresence>
         <div className='parallax'>
           <div className=' mt-24 mx-4'>
             <Routes>
               <Route index path="/" element={<AppMain />} />
-              <Route path="/catalog" element={<AppCatalog chooseCategory={chooseCategory} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
+              <Route path="/catalog" element={<AppCatalog onShowItem={onShowItem} chooseCategory={chooseCategory} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
             </Routes>
           </div>
           <AppFooter />

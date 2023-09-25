@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion"
 
 function AppCategories(props) {
     const [categories, setCategories] = useState([
@@ -23,8 +24,23 @@ function AppCategories(props) {
             label: 'Shoes',
         }
     ]);
+
+    const itemAnimation = {
+        hidden: {
+          y: -100,
+          opacity: 0,
+        },
+        visible: {
+          y: 0,
+          opacity: 1,
+        },
+    }
+
     return (
-        <div className=" glass flex py-2 px-2 gap-8 mb-4">
+        <motion.div
+        initial={itemAnimation.hidden}
+        whileInView={itemAnimation.visible}
+        className=" glass flex py-2 px-2 gap-8 mb-4">
         {
             categories.map(category =>(
                 <div
@@ -35,7 +51,7 @@ function AppCategories(props) {
                 </div>
             ))
         }
-        </div>
+        </motion.div>
     );
 }
 
