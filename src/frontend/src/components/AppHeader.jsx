@@ -78,7 +78,7 @@ const AppHeader = (props) => {
         <div className=" relative mt-4 mx-4">
           <nav className="wrapper rounded-2xl">
 
-              <div className="flex basis-1/2 p-2">
+              <div className="flex basis-1/2 py-2">
                 <ul className="flex w-auto justify-center gap-5">
                   <li>
                     <NavLink to="/catalog"
@@ -105,7 +105,7 @@ const AppHeader = (props) => {
                 {temp}
               </motion.NavLink>
 
-              <div className="flex justify-end basis-1/2 p-2">
+              <div className="flex justify-end basis-1/2 py-2">
                 <ul className="flex w-auto justify-center gap-5">
                   <li>
                     <a href="#" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
@@ -113,7 +113,7 @@ const AppHeader = (props) => {
                     </a>
                   </li>
                   <li className=" relative">
-                    <a href="#" onClick={() => setVisiblity(!visiblity)} className=" p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                    <a onClick={() => setVisiblity(!visiblity)} className="cursor-pointer p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
                       {visiblity ? (
                         <span className=" mx-[0.175rem]">
                           &#9650;

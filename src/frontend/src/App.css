@@ -38,3 +38,9 @@ a.active {
 .h-text {
     font-family: 'Borel', cursive;
 }
+
+.load {
+    background-image: url(https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif);
+    background-position: center;
+    background-size: cover;
+}

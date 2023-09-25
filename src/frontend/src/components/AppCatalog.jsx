@@ -1,5 +1,7 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+// import { useState } from "react";
 import { motion } from "framer-motion";
+import AppCategories from "./AppCategories";
 
 function AppCatalog(props) {
     const itemAnimation = {
@@ -12,8 +14,6 @@ function AppCatalog(props) {
           opacity: 1,
         },
     }
-
-    // const category = useState(['all', 'tshort', 'trouser', 'sweater'])
 
     return (
         <>
@@ -35,8 +35,10 @@ function AppCatalog(props) {
             <input type="text" />
         </motion.div> */}
 
+        <AppCategories chooseCategory={props.chooseCategory} />
+
         <motion.main
-        className=" grid lg:text-sm md:grid-cols-2 lg:grid-cols-4 gap-4 lg:px-5 xl:px-20 2xl:px-32 "
+        className=" grid lg:text-sm md:grid-cols-2 lg:grid-cols-4 gap-4  "
         >
             {
                 props.items.map(el => (
@@ -50,7 +52,7 @@ function AppCatalog(props) {
                         <div className="flex flex-row ">
                             <h3 className=" bg-slate-100 py-2 p-4 rounded-xl shadow-xl">{el.title}</h3>
                         </div>
-                        <img className=" rounded-xl shadow-2xl"src={el.img} alt="" />
+                        <img className="load rounded-xl shadow-2xl h-full"src={el.img} alt="" />
                         <div className="flex flex-col gap-2 md:flex-row md:gap-0 justify-between ">
                             <p className="font-[600] bg-slate-100 p-2 rounded-xl shadow-xl">Price: {el.price}&#x24;</p>
                             <button onClick={() => props.onAdd(el)} className="flex items-center justify-center bg-slate-100 p-2 rounded-xl shadow-xl hover:bg-white hover:drop-shadow-xl duration-200">
