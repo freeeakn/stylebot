@@ -13,3 +13,7 @@ class Item(models.Model):
     desc = models.CharField(max_length=255)
     category = models.ForeignKey(Category, blank=True)
     price = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+    
