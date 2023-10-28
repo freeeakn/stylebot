@@ -39,8 +39,8 @@ function AppItem(props) {
                 <img className="load rounded-xl shadow-2xl h-full"src={props.item.img} alt="" />
                 <div className="flex flex-row items-center gap-2">
                 {
-                    props.item.category.map((category) => (
-                        <h3 key={category} className=" bg-gradient-to-br from-[#7bd989] via-[#2bbec8] p-2 rounded-xl shadow-xl text-xs">#{category}</h3>
+                    props.item.categories.map((category) => (
+                        <h3 key={category.name} className=" bg-gradient-to-br from-[#7bd989] via-[#2bbec8] p-2 rounded-xl shadow-xl text-xs">#{category.name}</h3>
                     ))
                 }
                 </div>

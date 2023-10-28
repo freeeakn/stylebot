@@ -1,8 +1,8 @@
-import { useState } from 'react'
-// import axios from 'axios'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion'
-import './App.css'
+import './App.css';
 import AppHeader from './components/AppHeader.jsx'
 import AppCatalog from './components/AppCatalog.jsx';
 import AppFooter from './components/AppFooter.jsx';
@@ -11,193 +11,24 @@ import AppItem from './components/popup/AppItem.jsx';
 
 function App() {
 
-  let i = -1;
-    const [items, setItems] = useState([
-        {
-            id: i++,
-            count: 1,
-            title: 'Tshort',
-            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
-            desc: 'lorem ipsum dolor sit amet, consectetur',
-            category: [
-              'Tshort',
-              'brown'
-            ],
-            price: '12.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Tshort2',
-            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
-            desc: 'lorem ipsum dolor sits amet, consectetur',
-            category: [
-              'Tshort',
-            ],
-            price: '11.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Tshort3',
-            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
-            desc: 'lorem ipsum dolor sits amet, consectetur',
-            category: [
-              'Tshort',
-            ],
-            price: '10.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipsum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '25.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Tshort',
-            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
-            desc: 'lorem ipsum dolor sit amet, consectetur',
-            category: [
-              'Tshort',
-            ],
-            price: '12.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Tshort2',
-            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
-            desc: 'lorem ipsum dolor sits amet, consectetur',
-            category: [
-              'Tshort',
-            ],
-            price: '11.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Tshort3',
-            img: 'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/422992/sub/goods_422992_sub14.jpg?width=750',
-            desc: 'lorem ipsum dolor sits amet, consectetur',
-            category: [
-              'Tshort',
-            ],
-            price: '10.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipsum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '25.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-        {
-            id: i++,
-            count: 1,
-            title: 'Sweater2',
-            img: 'https://www.fjallraven.com/4a1b9e/globalassets/catalogs/fjallraven/f8/f818/f81829/f555/ovik_knit_sweater_m_81829-555_a_main_fjr.jpg?width=2000&height=2000&mode=BoxPad&bgcolor=fff&quality=100',
-            desc: 'lorem ipdssum dolor sits amet, consectetur',
-            category: [
-              'sweater',
-            ],
-            price: '50.99',
-        },
-    ])
-
+  const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [currentItems, setCurrentItems] = useState([...items]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [showItem, setShowItem] = useState(false);
 
   const [fullItem, setFullItem] = useState({});
+  useEffect(() => {
+      fetchItems()
+  }, []);
+
+  const fetchItems = async () => {
+      setIsLoading(true);
+      const {data} = await axios.get('http://127.0.0.1:8000/api/v1/items');
+      setItems(data);
+      setIsLoading(false);
+  };
 
   const addToCart = (item) => {
     let isInArray = false;
@@ -235,10 +66,11 @@ function App() {
   }
 
   const chooseCategory = (category) => {
-    if (category === 'all')
+    if (category === 'all') {
       setCurrentItems(items);
-    else
-      setCurrentItems(items.filter(item => category === item.category[0]));
+    } else {
+      setCurrentItems(items.filter(item => item.categories.map(cat => cat.key).includes(category)));
+    }
   }
 
   const onShowItem = (item) => {
@@ -249,19 +81,30 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart} sumCart={sumCart}/>
-        <AnimatePresence>
-          {showItem && <AppItem onShowItem={onShowItem} item={fullItem} onAdd={addToCart}/>}
-        </AnimatePresence>
-        <div className='parallax'>
-          <div className=' mt-24 mx-4'>
-            <Routes>
-              <Route index path="/" element={<AppMain />} />
-              <Route path="/catalog" element={<AppCatalog onShowItem={onShowItem} chooseCategory={chooseCategory} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
-            </Routes>
+        {
+          isLoading ?
+          <div className="relative flex justify-center items-center">
+            <div className="fixed top-[40%]">
+              <div className="loader"></div>
+              <h2 className=' mt-3'>Loading...</h2>
+            </div>
+          </div> :
+          <>
+          <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart} sumCart={sumCart}/>
+          <AnimatePresence>
+            {showItem && <AppItem onShowItem={onShowItem} item={fullItem} onAdd={addToCart}/>}
+          </AnimatePresence>
+          <div className='parallax'>
+            <div className=' mt-24 mx-4'>
+              <Routes>
+                <Route index path="/" element={<AppMain />} />
+                <Route path="/catalog" element={<AppCatalog onShowItem={onShowItem} chooseCategory={chooseCategory} allItems={items} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
+              </Routes>
+            </div>
+            <AppFooter />
           </div>
-          <AppFooter />
-        </div>
+          </>
+        }
       </BrowserRouter>
     </>
   )

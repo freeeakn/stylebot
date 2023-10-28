@@ -1,29 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { motion } from "framer-motion"
 
 function AppCategories(props) {
     const [categories, setCategories] = useState([
         {
+            id: 0,
             key: 'all',
-            label: 'All wears',
-        },
-        {
-            key: 'Tshort',
-            label: 'T-shorts',
-        },
-        {
-            key: 'sweater',
-            label: 'Sweaters',
-        },
-        {
-            key: 'jeans',
-            label: 'Jeans',
-        },
-        {
-            key: 'shoes',
-            label: 'Shoes',
+            name: 'All wears',
         }
     ]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const itemAnimation = {
         hidden: {
@@ -35,23 +22,48 @@ function AppCategories(props) {
           opacity: 1,
         },
     }
+    
+    useEffect(() => {
+        fetchCategories()
+    }, []);
+
+    const fetchCategories = async () => {
+        setIsLoading(true);
+        const {data} = await axios.get('http://127.0.0.1:8000/api/v1/categories')
+        setCategories([...categories, ...data])
+        setIsLoading(false);
+    };
 
     return (
+        <>
+        {
+        isLoading 
+        ?
         <motion.div
         initial={itemAnimation.hidden}
         whileInView={itemAnimation.visible}
-        className=" glass flex py-2 px-2 gap-8 mb-4">
-        {
-            categories.map(category =>(
+        exit={itemAnimation.hidden}
+        className="flex justify-center items-center glass py-5 px-5 gap-8 mb-4">
+            <div className="loader2"></div>
+        </motion.div>
+        :
+        <motion.div
+        initial={itemAnimation.hidden}
+        whileInView={itemAnimation.visible}
+        className="glass flex py-2 px-2 gap-8 mb-4">
+            {
+            categories.map(item =>(
                 <div
-                onClick={() => props.chooseCategory(category.key)}
-                key={category.key}
+                onClick={() => props.chooseCategory(item.key)}
+                key={item.id}
                 className="cursor-pointer p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
-                    {category.label}
+                    {item.name}
                 </div>
             ))
-        }
+            }
         </motion.div>
+        }
+        </>
     );
 }
 

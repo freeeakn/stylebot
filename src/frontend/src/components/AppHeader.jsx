@@ -16,15 +16,12 @@ const AppHeader = (props) => {
 
   const [temp, setTemp] = useState(
     <>
-        <motion.NavLink
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        transition={{ duration: 2 }}
+        <NavLink
         to="/" className="w-1/2 ">
           <img
           className="w-full"
           src={path} alt="lookotitsa" />
-        </motion.NavLink>
+        </NavLink>
 
         <NavLink to="/" className="w-1/3">
           <img
@@ -48,15 +45,12 @@ const AppHeader = (props) => {
     } else {
       setTemp(
       <>
-        <motion.NavLink
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        transition={{ duration: 2 }}
+        <NavLink
         to="/" className="w-1/2 ">
           <img
           className="w-full"
           src={path} alt="" />
-        </motion.NavLink>
+        </NavLink>
 
         <NavLink to="/" className="w-1/3">
           <img
@@ -95,15 +89,15 @@ const AppHeader = (props) => {
                 </ul>
               </div>
 
-              <motion.NavLink
+              <motion.div
               to="/"
               className="flex flex-col justify-center items-center"
-              initial={{y:-100}}
-              animate={{y:0}}
+              initial={{y:-100, opacity:0}}
+              animate={{y:0, opacity:1}}
               transition={{ delay: 0.2 }}
               >
                 {temp}
-              </motion.NavLink>
+              </motion.div>
 
               <div className="flex justify-end basis-1/2 py-2">
                 <ul className="flex w-auto justify-center gap-5">

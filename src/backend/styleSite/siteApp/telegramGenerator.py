@@ -7,7 +7,6 @@ from django_telegram_login.widgets.generator import (
     create_callback_login_widget,
 )
 
-
 bot_name = settings.TELEGRAM_BOT_NAME
 bot_token = settings.TELEGRAM_BOT_TOKEN
 
