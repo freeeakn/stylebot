@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from siteApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/items', ItemView.as_view({'get': 'list'})),
 ]

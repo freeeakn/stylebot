@@ -190,7 +190,6 @@ function App() {
             ],
             price: '50.99',
         },
-        
     ])
 
   const [cart, setCart] = useState([]);

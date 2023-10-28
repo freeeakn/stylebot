@@ -1,12 +1,11 @@
 from rest_framework import serializers
-from .models import Item, User
+from .models import *
 
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = [
-            'id',
             'count',
             'title',
             'img',
@@ -15,9 +14,9 @@ class ItemSerializer(serializers.ModelSerializer):
             'price',
             ]
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-            'id',
-            ]
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = [
+#             'id',
+#             ]
