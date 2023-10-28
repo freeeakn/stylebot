@@ -6,14 +6,13 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    count = models.IntegerField(primary_key=True, default=1)
-    title = models.CharField(max_length=255)
+    count = models.IntegerField(default=0)
+    title = models.CharField(max_length=15)
     img = models.ImageField(upload_to ='uploads/')
     desc = models.CharField(max_length=255)
     category = models.ForeignKey(Category, blank=True)
-    price = models.CharField(max_length=255)
+    price = models.CharField(max_length=25)
 
-    def __str__(self):
-        return self.title
+class User(models.Model):
+    id = models.CharField(primary_key=True, unique=True, max_length=255)
     
