@@ -9,7 +9,7 @@ const AppLogin = () => {
 
   return (
     <>
-    <TelegramLoginButton dataOnauth={handleTelegramResponse} buttonSize="small" botName="styletest1223Bot" language="ru" />
+    <TelegramLoginButton dataOnauth={handleTelegramResponse} buttonSize="small" botName="TestingLesobot" language="ru" />
     </>
   );
 };
