@@ -52,7 +52,7 @@ function AppCatalog(props) {
                         <div className="flex flex-row ">
                             <h3 className=" bg-slate-100 py-2 p-4 rounded-xl shadow-xl">{el.title}</h3>
                         </div>
-                        <img onClick={() => props.onShowItem(el)} loading="lazy" className=" cursor-pointer load rounded-xl shadow-2xl" src={el.img} alt="" />
+                        <img onClick={() => props.onShowItem(el)} loading="lazy" className="cursor-pointer load rounded-xl shadow-2xl h-80 object-contain" src={el.img} alt="" />
                         <div className="flex flex-col gap-2 md:flex-row md:gap-0 justify-between ">
                             <p className="font-[600] bg-slate-100 p-2 rounded-xl shadow-xl">Price: {el.price}&#x24;</p>
                             <button onClick={() => props.onAdd(el)} className="cursor-pointer flex items-center justify-center bg-slate-100 p-2 rounded-xl shadow-xl hover:bg-white hover:drop-shadow-xl duration-200">
@@ -75,7 +75,7 @@ function AppCatalog(props) {
                         <div className="flex flex-row ">
                             <h3 className=" bg-slate-100 py-2 p-4 rounded-xl shadow-xl">{el.title}</h3>
                         </div>
-                        <img onClick={() => props.onShowItem(el)} className="cursor-pointer load rounded-xl shadow-2xl h-80" src={el.img} alt="" />
+                        <img onClick={() => props.onShowItem(el)} className="cursor-pointer load rounded-xl shadow-2xl h-80 object-contain" src={el.img} alt="" />
                         <div className="flex flex-col gap-2 md:flex-row md:gap-0 justify-between ">
                             <p className="font-[600] bg-slate-100 p-2 rounded-xl shadow-xl">Price: {el.price}&#x24;</p>
                             <button onClick={() => props.onAdd(el)} className="cursor-pointer flex items-center justify-center bg-slate-100 p-2 rounded-xl shadow-xl hover:bg-white hover:drop-shadow-xl duration-200">
