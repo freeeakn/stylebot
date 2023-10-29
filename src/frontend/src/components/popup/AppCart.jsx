@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import AppLogin from "../AppLogin";
 
 function AppCart(props) {
     return (
@@ -88,6 +89,9 @@ function AppCart(props) {
                         </svg>
                     </button>
                 </div>
+            </div>
+            <div className=" flex justify-end">
+                <AppLogin/>
             </div>
             </> :
                 <>
