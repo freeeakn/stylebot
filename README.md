@@ -37,22 +37,59 @@
 2. Установите необходимые зависимости:
 
    - Для серверной части (django):
-     ```shell
-     cd backend
-     ```
+
+      - macos and linux:
+
+      ```shell
+      python3 -m venv venv
+      source venv/bin/activate
+      pip3 install -r requirements.txt
+      ```
+
+      - windows:
+
+      ```shell
+      python -m venv venv
+      venv/Scripts/activate
+      pip install -r requirements.txt
+      ```
+
    - Для клиентской части (react):
-     ```shell
-     cd frontend
-     npm install
-     ```
+
+      ```shell
+      cd src/frontend
+      npm i
+      ```
 
 3. Настройте базу данных (например, PostgreSQL).
 
+   - settings.py
+
 4. Сконфигурируйте приложение:
 
-   - Переименуйте файл `.env.example` в `.env` и установите необходимые переменные окружения, такие как настройки базы данных и секретный ключ JWT.
+   - Переименуйте файл `.env.example` в `.env` и установите необходимые переменные окружения, такие как настройки базы данных и секретный ключ.
 
-5. Откройте приложение в браузере по адресу [http://localhost:4200](http://localhost:4200).
+5. Запустите сервера
+
+   - Полный запуск фронтенда и бэкенда
+
+      ```shell
+      make -j 2 run
+      ```
+
+   - Запуск фронтенда
+
+      ```shell
+      make front
+      ```
+
+   - Запуск бэкенда
+
+      ```shell
+      make back
+      ```
+
+6. Откройте приложение в браузере.
 
 ## Вклад
 
