@@ -1,3 +1,7 @@
+all:
+	make -j 2 run
+
+
 run: back front
 
 
