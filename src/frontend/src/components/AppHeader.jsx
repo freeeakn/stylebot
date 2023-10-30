@@ -110,7 +110,7 @@ const AppHeader = (props) => {
               <div className="flex justify-end basis-1/2 py-2">
                 <ul className="flex w-auto justify-center gap-5">
                   <li>
-                    <a href="https://t.me/styletest1223Bot" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
+                    <a href="https://t.me/LookovitsaBot" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
                       Bot
                     </a>
                   </li>

@@ -15,7 +15,7 @@ const AppLogin = () => {
     <>
       {
         !login &&
-        <TelegramLoginButton dataOnauth={handleTelegramResponse} buttonSize="small" botName="styletest1223Bot" language="en" />
+        <TelegramLoginButton dataOnauth={handleTelegramResponse} buttonSize="small" botName="LookovitsaBot" language="en" />
       }
     </>
   );

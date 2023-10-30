@@ -9,6 +9,7 @@ import AppFooter from './components/AppFooter.jsx';
 import AppMain from './components/AppMain.jsx';
 import AppItem from './components/popup/AppItem.jsx';
 import AppAi from './components/AppAi';
+import NotFound from './components/NotFound';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [currentItems, setCurrentItems] = useState([...items]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingErr, setIsLoadingErr] = useState('loading...');
 
   const [showItem, setShowItem] = useState(false);
 
@@ -24,11 +26,14 @@ function App() {
       fetchItems()
   }, []);
 
-  const fetchItems = async () => {
+  const fetchItems = () => {
       setIsLoading(true);
-      const {data} = await axios.get('api/v1/items');
-      setItems(data);
-      setIsLoading(false);
+      axios.get('api/v1/items')
+        .then(response => {
+          setItems(response.data)
+          setIsLoading(false)
+        })
+        .catch(error => setIsLoadingErr(error.message + ' :('))
   };
 
   const addToCart = (item) => {
@@ -86,8 +91,10 @@ function App() {
           isLoading ?
           <div className="relative flex justify-center items-center">
             <div className="fixed top-[40%]">
-              <div className="loader"></div>
-              <h2 className=' mt-3'>Loading...</h2>
+              <div className='flex flex-col justify-center items-center'>
+                <div className="loader"></div>
+                <h2 className=' mt-3'>{isLoadingErr}</h2>
+              </div>
             </div>
           </div> :
           <>
@@ -95,12 +102,13 @@ function App() {
           <AnimatePresence>
             {showItem && <AppItem onShowItem={onShowItem} item={fullItem} onAdd={addToCart}/>}
           </AnimatePresence>
-          <div className='parallax'>
+          <div className='parallax min-h-screen flex flex-col justify-between'>
             <div className=' mt-24 mx-4'>
               <Routes>
                 <Route index path="/" element={<AppMain />} />
                 <Route path="/catalog" element={<AppCatalog onShowItem={onShowItem} chooseCategory={chooseCategory} allItems={items} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
                 <Route path="/ai" element={<AppAi/>} />
+                <Route path='*' element={<NotFound />}/>
               </Routes>
             </div>
             <AppFooter />
