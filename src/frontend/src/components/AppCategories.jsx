@@ -22,16 +22,19 @@ function AppCategories(props) {
           opacity: 1,
         },
     }
-    
+
     useEffect(() => {
         fetchCategories()
     }, []);
 
-    const fetchCategories = async () => {
+    const fetchCategories = () => {
         setIsLoading(true);
-        const {data} = await axios.get('api/v1/categories')
-        setCategories([...categories, ...data])
-        setIsLoading(false);
+        axios.get('api/v1/categories')
+          .then(response => {
+            setCategories([...categories, ...response.data])
+            setIsLoading(false)
+          })
+          .catch(error => console.log(error.message + ' :('))
     };
 
     return (

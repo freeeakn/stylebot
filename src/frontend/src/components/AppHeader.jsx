@@ -11,6 +11,14 @@ const AppHeader = (props) => {
     'text_2.svg'
   ]
 
+  const [login, setLogin] = useState(null);
+  useEffect(() => {
+    const temp = JSON.parse(localStorage.getItem('login'));
+    if (temp) {
+        setLogin(temp);
+    }
+  }, []);
+
   const [visiblity, setVisiblity] = useState(false);
   const [path, setPath] = useState('text.svg');
   const [sum, setSum] = useState(0);
@@ -80,7 +88,7 @@ const AppHeader = (props) => {
         <div className=" relative mt-4 mx-4">
           <nav className="wrapper rounded-2xl">
 
-              <div className="flex basis-1/2 py-2">
+              <div className="flex basis-1/2 ">
                 <ul className="flex w-auto justify-center gap-5">
                   <li>
                     <NavLink to="/catalog"
@@ -107,14 +115,13 @@ const AppHeader = (props) => {
                 {temp}
               </motion.div>
 
-              <div className="flex justify-end basis-1/2 py-2">
-                <ul className="flex w-auto justify-center gap-5">
+              <div className="flex justify-end basis-1/2">
+                <ul className="flex w-auto justify-center items-center gap-5">
                   <li>
                     <a href="https://t.me/LookovitsaBot" className="p-2 rounded-xl hover:bg-slate-100 hover:drop-shadow-xl duration-200">
                       Bot
                     </a>
                   </li>
-                  <li className=" relative">
                   <AnimatePresence>
                     { props.cartArr.length > 0 &&
                       <motion.span
@@ -145,16 +152,20 @@ const AppHeader = (props) => {
                         </span>
                       ) : (
                         <>
-                        Cart
+                        {!login ?
+                        <>Cart</> :
+                        <img
+                        className="h-6 rounded-full"
+                        src={login.photo_url} alt="avatar" />
+                        }
                         </>
                       )}
                     </a>
                     <AnimatePresence>
                       {visiblity && (
-                        <AppCart cart={props.cartArr} rmItem={props.rmItem} sumCart={props.sumCart}/>
+                        <AppCart cart={props.cartArr} rmItem={props.rmItem} sumCart={props.sumCart} login={login} setLogin={setLogin}/>
                       )}
                     </AnimatePresence>
-                  </li>
                 </ul>
               </div>
 

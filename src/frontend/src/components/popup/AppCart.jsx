@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import AppLogin from "../AppLogin";
+import AppPay from "../AppPay";
 
 function AppCart(props) {
+
     return (
         <motion.div
         initial={{
@@ -77,21 +79,37 @@ function AppCart(props) {
                     </div>
                 </motion.div>
             ))}
+            {   !props.login &&
+                <motion.div
+                initial={{
+                    scale: 0,
+                    opacity: 0,
+                }}
+                animate={{
+                    scale: 1,
+                    opacity: 1,
+                }}
+                exit={{
+                    scale: 0,
+                    opacity: 0,
+                }}
+                transition={{
+                    type: "spring",
+                }}
+                className="glass fixed p-2 bottom-3 right-3">
+                    <div className=" flex justify-center">
+                        <AppLogin setLogin={props.setLogin}/>
+                    </div>
+                </motion.div>
+            }
             <div className="flex items-center justify-between text-sm">
                 <p>Sub-Total:</p>
                 <div className="flex items-center gap-4">
                     <h4>
                         {props.sumCart()}$
                     </h4>
-                    <button className="flex items-center justify-center bg-gradient-to-br from-[#7bd989] via-[#2bbec8] p-2 rounded-xl shadow-xl hover:bg-lime-300 hover:drop-shadow-xl duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                            <path fillRule="evenodd" d="M1 4a1 1 0 011-1h16a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4zm12 4a3 3 0 11-6 0 3 3 0 016 0zM4 9a1 1 0 100-2 1 1 0 000 2zm13-1a1 1 0 11-2 0 1 1 0 012 0zM1.75 14.5a.75.75 0 000 1.5c4.417 0 8.693.603 12.749 1.73 1.111.309 2.251-.512 2.251-1.696v-.784a.75.75 0 00-1.5 0v.784a.272.272 0 01-.35.25A49.043 49.043 0 001.75 14.5z" clipRule="evenodd" />
-                        </svg>
-                    </button>
+                    <AppPay />
                 </div>
-            </div>
-            <div className=" flex justify-end">
-                <AppLogin/>
             </div>
             </> :
                 <>
