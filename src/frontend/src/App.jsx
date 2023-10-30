@@ -8,6 +8,7 @@ import AppCatalog from './components/AppCatalog.jsx';
 import AppFooter from './components/AppFooter.jsx';
 import AppMain from './components/AppMain.jsx';
 import AppItem from './components/popup/AppItem.jsx';
+import AppAi from './components/AppAi';
 
 function App() {
 
@@ -99,6 +100,7 @@ function App() {
               <Routes>
                 <Route index path="/" element={<AppMain />} />
                 <Route path="/catalog" element={<AppCatalog onShowItem={onShowItem} chooseCategory={chooseCategory} allItems={items} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
+                <Route path="/ai" element={<AppAi/>} />
               </Routes>
             </div>
             <AppFooter />

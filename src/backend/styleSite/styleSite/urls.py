@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/items', ItemView.as_view({'get': 'list'})),
     path('api/v1/categories', CategoryView.as_view({'get': 'list'})),
+    path('api/v1/login', LoginView.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
