@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',
+    # 'corsheaders',
     'siteApp',
     'django_telegram_login',
 ]
@@ -38,7 +38,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 # CORS_ORIGIN_WHITELIST = (
 #        'localhost:3000',
@@ -108,4 +108,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Telegram bot field
 
-TELEGRAM_BOT_TOKEN = str(os.getenv('BOT_TOKEN'))
+# TELEGRAM_BOT_TOKEN = os.environ.get("BOT_TOKEN")
+# TELEGRAM_BOT_WEBHOOK_URL = '<your_webhook_url>'
+# TELEGRAM_REDIRECT_URL = '<your_redirect_url>'
+# TELEGRAM_LOGIN_WIDGET_URL = 'https://telegram.org/js/telegram-widget.js?5'

@@ -29,7 +29,7 @@ function AppCategories(props) {
 
     const fetchCategories = async () => {
         setIsLoading(true);
-        const {data} = await axios.get('http://127.0.0.1:8000/api/v1/categories')
+        const {data} = await axios.get('api/v1/categories')
         setCategories([...categories, ...data])
         setIsLoading(false);
     };

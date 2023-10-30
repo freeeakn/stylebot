@@ -1,16 +1,22 @@
 import TelegramLoginButton from 'react-telegram-login';
 import axios from 'axios';
+import { useState } from 'react';
 
 const AppLogin = () => {
+  const [login, setLogin] = useState(null);
 
   const handleTelegramResponse = response => {
     console.log(response);
-    axios.post('http://127.0.0.1:8000/api/v1/login', response)
+    setLogin(response);
+    axios.post('api/v1/login', response)
   };
 
   return (
     <>
-    <TelegramLoginButton dataOnauth={handleTelegramResponse} buttonSize="small" botName="styletest1223Bot" language="en" />
+      {
+        !login &&
+        <TelegramLoginButton dataOnauth={handleTelegramResponse} buttonSize="small" botName="styletest1223Bot" language="en" />
+      }
     </>
   );
 };
