@@ -50,6 +50,10 @@ async def on_startup():
 async def process_start_command(message: Message):
     await message.answer(text=MESSAGES['start'], parse_mode='html')
 
+@dp.message(F.text == '/start')
+async def process_start_command(message: Message):
+    await message.answer(text=MESSAGES['start'], parse_mode='html')
+
 
 
 @dp.message(F.text)
