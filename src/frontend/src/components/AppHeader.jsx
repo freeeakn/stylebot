@@ -11,14 +11,6 @@ const AppHeader = (props) => {
     'text_2.svg'
   ]
 
-  const [login, setLogin] = useState(null);
-  useEffect(() => {
-    const temp = JSON.parse(localStorage.getItem('login'));
-    if (temp) {
-        setLogin(temp);
-    }
-  }, []);
-
   const [visiblity, setVisiblity] = useState(false);
   const [path, setPath] = useState('text.svg');
   const [sum, setSum] = useState(0);
@@ -152,18 +144,18 @@ const AppHeader = (props) => {
                         </span>
                       ) : (
                         <>
-                        {!login ?
+                        {!props.login ?
                         <>Cart</> :
                         <img
                         className="h-6 rounded-full"
-                        src={login.photo_url} alt="avatar" />
+                        src={props.login.photo_url} alt="avatar" />
                         }
                         </>
                       )}
                     </a>
                     <AnimatePresence>
                       {visiblity && (
-                        <AppCart cart={props.cartArr} rmItem={props.rmItem} sumCart={props.sumCart} login={login} setLogin={setLogin}/>
+                        <AppCart cart={props.cartArr} rmItem={props.rmItem} sumCart={props.sumCart} login={props.login} setLogin={props.setLogin}/>
                       )}
                     </AnimatePresence>
                 </ul>

@@ -11,6 +11,10 @@ import AppItem from './components/popup/AppItem.jsx';
 import AppAi from './components/AppAi';
 import NotFound from './components/NotFound';
 
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
+
 function App() {
 
   const [items, setItems] = useState([]);
@@ -18,13 +22,27 @@ function App() {
   const [currentItems, setCurrentItems] = useState([...items]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingErr, setIsLoadingErr] = useState('loading...');
+  const [login, setLogin] = useState(null);
 
   const [showItem, setShowItem] = useState(false);
 
   const [fullItem, setFullItem] = useState({});
+
   useEffect(() => {
-      fetchItems()
+    fetchLogin()
+    fetchItems()
   }, []);
+
+  const fetchLogin = () => {
+    const temp = JSON.parse(localStorage.getItem('login'))
+    console.log(temp)
+    if (temp) {
+      axios.post('api/v1/login', temp)
+          .then(response => {
+            setLogin(response)
+          })
+    }
+  }
 
   const fetchItems = () => {
       setIsLoading(true);
@@ -98,7 +116,7 @@ function App() {
             </div>
           </div> :
           <>
-          <AppHeader cartArr={cart} cartSetter={setCart} rmItem={removeFromCart} sumCart={sumCart}/>
+          <AppHeader login={login} setLogin={setLogin} cartArr={cart} cartSetter={setCart} rmItem={removeFromCart} sumCart={sumCart}/>
           <AnimatePresence>
             {showItem && <AppItem onShowItem={onShowItem} item={fullItem} onAdd={addToCart}/>}
           </AnimatePresence>
