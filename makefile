@@ -6,7 +6,7 @@ run: back front
 
 
 back:
-	python3 src/backend/styleSite/manage.py runserver
+	python3 src/styleSite/manage.py runserver
 
 
 front:
