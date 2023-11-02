@@ -16,6 +16,7 @@ from aiogram.types import (
     InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery,
 )
 import os
+import requests
 
 # ----------------------------------------------------------------
 
@@ -36,11 +37,12 @@ async def on_startup():
     main_menu_commands = [
         BotCommand(command='/start', description='Начало работы'),
         BotCommand(command='/support', description='Поддержка'),
+        BotCommand(command='/get_recommendations', description = 'Получить рекомендации'),
     ]
     await bot.set_my_commands(main_menu_commands)
 
 
-# ----------------------------------------------------------------
+# # ----------------------------------------------------------------
 
 # bot functionality
 
@@ -49,13 +51,20 @@ async def process_start_command(message: Message):
     await message.answer(text=MESSAGES['start'], parse_mode='html')
 
 
+
 @dp.message(F.text)
 async def echo(message: Message):
     print(message.text)
     await message.answer(message.text, parse_mode='html')
 
-# ----------------------------------------------------------------
+#----------------------------------------------------------------
 
+@dp.message(F.text == '/get_recommendations')
+async def get_rec_command(message: Message):
+     await message.answer(text=MESSAGES['get_recommendations'], parse_mode='html')
+
+if get_rec_command():
+     print("Введите ваш город: ")
 
 async def main():
     await dp.start_polling(bot)
@@ -67,3 +76,4 @@ if __name__ == '__main__':
         asyncio.run(main())
     except KeyboardInterrupt:
         print("Bot off...")
+
