@@ -20,3 +20,8 @@ class ItemSerializer(serializers.ModelSerializer):
             item.categories.add(Category.objects.get(id=category['id']))
         item.save()
         return item
+    
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'

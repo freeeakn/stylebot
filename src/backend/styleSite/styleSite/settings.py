@@ -108,7 +108,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Telegram bot field
 
-# TELEGRAM_BOT_TOKEN = os.environ.get("BOT_TOKEN")
+TELEGRAM_BOT_TOKEN = os.environ.get("BOT_TOKEN")
+TELEGRAM_BOT_NAME = 'LookovitsaBot'
 # TELEGRAM_BOT_WEBHOOK_URL = '<your_webhook_url>'
 # TELEGRAM_REDIRECT_URL = '<your_redirect_url>'
-# TELEGRAM_LOGIN_WIDGET_URL = 'https://telegram.org/js/telegram-widget.js?5'

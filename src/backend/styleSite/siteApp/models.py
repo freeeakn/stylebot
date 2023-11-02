@@ -2,7 +2,7 @@ from django.db import models
 
 class Category(models.Model):
     key = models.CharField(
-        verbose_name='Name of key category',
+        verbose_name='Key of key category',
         max_length=10,
         default='etc',
     )
@@ -23,9 +23,22 @@ class Item(models.Model):
 
 
 class Profile(models.Model):
-    external_id = models.PositiveIntegerField(
+    auth_date = models.PositiveIntegerField(
         verbose_name='telegram id profile'
     )
-    name = models.CharField(
-        verbose_name='Name of the telegram profile',
+    first_name = models.CharField(
+        verbose_name='FirstName of the telegram profile',
+    )
+    hash = models.CharField(
+        verbose_name='Hash of the telegram profile',
+    )
+    id = models.PositiveIntegerField(
+        primary_key=True,
+        verbose_name='telegram id profile'
+    )
+    photo_url = models.CharField(
+        verbose_name='Photo_Url of the telegram profile',
+    )
+    username = models.CharField(
+        verbose_name='UserName of the telegram profile',
     )

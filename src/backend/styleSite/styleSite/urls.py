@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/items', ItemView.as_view({'get': 'list'})),
     path('api/v1/categories', CategoryView.as_view({'get': 'list'})),
+    path('api/v1/reg', RegView.as_view()),
     path('api/v1/login', LoginView.as_view()),
 ]
 
