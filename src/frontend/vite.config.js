@@ -7,14 +7,4 @@ export default defineConfig({
   build: {
     outDir: '../../public_html',
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://192.168.0.115:8000/",
-        changeOrigin: true,
-        secure: false,
-        ws: true,
-      },
-    },
-  },
 })

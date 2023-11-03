@@ -11,7 +11,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.115', 'lookovitsa.duckdns.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,7 +72,6 @@ DATABASES = {
         'PASSWORD': str(os.getenv('DB_PASS')),
         'HOST': str(os.getenv('DB_HOST')),
         'PORT':  str(os.getenv('DB_PORT')),
-        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
