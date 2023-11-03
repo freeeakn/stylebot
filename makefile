@@ -1,3 +1,5 @@
+OS = $(shell uname)
+
 all:
 	make -j 2 run
 
