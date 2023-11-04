@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 export default function NotFound() {
     const sha = () => {
-        return `/src/assets/${Math.floor(Math.random() * 33) + 1}.svg`;   
+        return `${Math.floor(Math.random() * 33) + 1}.svg`;   
     }
     const navigate = useNavigate();
     useEffect(() => navigate('404'), [navigate]);
