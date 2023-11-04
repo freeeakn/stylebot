@@ -15,11 +15,12 @@ function AppCatalog(props) {
     }
 
     return (
-        <>
+        <div
+        className=' relative'>
         <motion.div
         initial={itemAnimation.hidden}
         whileInView={itemAnimation.visible}
-        className=" flex justify-center py-8">
+        className="flex justify-center py-8">
         
             <h2 className="h-text text-5xl">
                 Catalog
@@ -45,7 +46,7 @@ function AppCatalog(props) {
                     <motion.div
                     initial={itemAnimation.hidden}
                     whileInView={itemAnimation.visible}
-                    // viewport={{ amount: 0.2 }}
+                    viewport={{ once: true }}
                     key={el.id}
                     className="glass flex flex-col justify-center gap-4 p-4 shadow-xl"
                     >
@@ -68,7 +69,7 @@ function AppCatalog(props) {
                     <motion.div
                     initial={itemAnimation.hidden}
                     whileInView={itemAnimation.visible}
-                    // viewport={{ amount: 0.2 }}
+                    viewport={{ once: true }}
                     key={el.id}
                     className="glass flex flex-col justify-center gap-4 p-4 shadow-xl"
                     >
@@ -89,7 +90,7 @@ function AppCatalog(props) {
                 )) 
             }
         </motion.main>
-        </>
+        </div>
     );
 }
 
