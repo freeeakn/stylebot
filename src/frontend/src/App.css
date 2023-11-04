@@ -21,7 +21,7 @@ body {
     perspective: 1px;
     overflow-y: auto;
 
-    background-image: url("bg-template.svg");
+    background-image: url("./assets/bg-template.svg");
     background-size:contain;
     background-attachment: fixed;
 }
