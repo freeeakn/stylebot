@@ -53,6 +53,22 @@ async def on_startup():
 # bot functionality
 
 
+def get_weather(city):
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API}&units=metric'
+    response = requests.get(url)
+    data = json.loads(response.text)
+    temperature = int(data["main"]["temp"])
+    return temperature
+
+def get_code(city):
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API}&units=metric'
+    response = requests.get(url)
+    data = json.loads(response.text)
+    code = data["cod"]
+    return code
+
+
+
 @dp.message(F.text == '/start')
 async def process_start_command(message: Message):
     await message.answer(text=MESSAGES['start'], parse_mode='html')
@@ -60,7 +76,7 @@ async def process_start_command(message: Message):
 #----------------------------------------------------------------
 
 @dp.message(F.text == '/support')
-async def process_start_command(message: Message):
+async def process_support_command(message: Message):
     await message.answer(text=MESSAGES['help'], parse_mode='html')
 
 
@@ -90,19 +106,23 @@ async def cancel_message(message: Message, state: FSMContext):
 @dp.message(Form.weather)
 async def get_city (message: Message, state: FSMContext):
     city = message.text.strip().lower()
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API}&units=metric'
-    response = requests.get(url)
-    data = json.loads(response.text)
-    if int(data["main"]["temp"])<=0 and int(data["main"]["temp"])>=-50:
-        print("холодно")
-    if int(data["main"]["temp"])>0 and int(data["main"]["temp"])<=20:
-        print("тепло")
-    if int(data["main"]["temp"])>20 and int(data["main"]["temp"])<40:
-        print("жарко")
-    await state.update_data(weather = message.text)
+    code = get_code(city)
+
+    if code == 200:
+        temperature = get_weather(city)
+        if temperature <=0 and temperature>=-50:
+            weather_state = "холодно"
+        if temperature>0 and temperature<=20:
+            weather_state = "тепло"
+        if temperature>20 and temperature<=40:
+            weather_state = "жарко"
+    else:
+        await message.answer(text = "Извините, возникла ошибка, скорее всего вы неверно указали название города. Попробуйте ещё раз!")
+
+    
+    await state.update_data(weather_state=weather_state)
     await state.set_state(Form.colour)
-    if data["cod"] == 200:
-        await message.answer(text = "Отлично, а теперь выберите, какую цветовую гамму одежды вы предпочитаете:",
+    await message.answer(text = "Отлично, а теперь выберите, какую цветовую гамму одежды вы предпочитаете:",
     reply_markup=ReplyKeyboardMarkup(
             keyboard=[
             [
@@ -118,21 +138,36 @@ async def get_city (message: Message, state: FSMContext):
             resize_keyboard=True,
         ),
     )
+
+
+@dp.message(Form.colour)
+async def case_generator (message: Message, state: FSMContext):
+    color = message.text
+    data = await state.get_data()
+    weather_state = data.get('weather_state')
+
+    if weather_state == "холодно":
+        if color == "Нейтральные цвета":
+            await message.answer(text = "Сегодня холодно, мать, ну его нахуй куда-то идти...да ещё и в нейтральном")
+        elif color == "Яркие цвета":
+            await message.answer(text = "Сегодня холодно, мать, какой яркий, смотри чтоб молочница не вылезла")
+        else:
+            await message.answer(text = "В эту холодину контрастная я, девачьки")
+    elif weather_state == "тепло":
+        if color == "Нейтральные цвета":
+            await message.answer(text = "Хоть и прохладно, но пробздеться в нейтральном не помешает")
+        elif color == "Яркие цвета":
+            await message.answer(text = "Сегодня прохладно, мать,  смотри чтоб молочница не вылезла")
+        else:
+            await message.answer(text = "Сегодня прохладно, мать, контратная я, девачьки")
     else:
-        await message.answer(text = "Извините, возникла ошибка, скорее всего вы неверно указали название города. Попробуйте ещё раз!")
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if color == "Нейтральные цвета":
+            await message.answer(text = "Сегодня жара, мать, какой нейтральный, ты в чёрном сваришься")
+        elif color == "Яркие цвета":
+            await message.answer(text = "Лучший выбор, в жарюку лютую напялить ярко-жёлтую авоську какую-то")
+        else:
+            await message.answer(text = "Хоть и жара, но контраст одобряем")
+    
 async def main():
     await dp.start_polling(bot)
 
