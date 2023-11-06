@@ -7,12 +7,12 @@ import json
 from aiogram import Bot, Dispatcher, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-
 from aiogram.types import (
     Message,
     BotCommand,
     KeyboardButton,
     ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
     # FSInputFile,
     # ShippingOption,
     # ShippingQuery,
@@ -124,7 +124,7 @@ async def get_city (message: Message, state: FSMContext):
     await state.set_state(Form.colour)
     await message.answer(text = "Отлично, а теперь выберите, какую цветовую гамму одежды вы предпочитаете:",
     reply_markup=ReplyKeyboardMarkup(
-            keyboard=[
+            keyboard = [
             [
                 KeyboardButton(text="Нейтральные цвета"),
             ],
@@ -142,6 +142,7 @@ async def get_city (message: Message, state: FSMContext):
 
 @dp.message(Form.colour)
 async def case_generator (message: Message, state: FSMContext):
+    await message.answer(text="Формируется образ...", reply_markup=ReplyKeyboardRemove())
     color = message.text
     data = await state.get_data()
     weather_state = data.get('weather_state')
@@ -167,6 +168,8 @@ async def case_generator (message: Message, state: FSMContext):
             await message.answer(text = "Лучший выбор, в жарюку лютую напялить ярко-жёлтую авоську какую-то")
         else:
             await message.answer(text = "Хоть и жара, но контраст одобряем")
+
+    
     
 async def main():
     await dp.start_polling(bot)
