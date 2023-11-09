@@ -149,25 +149,25 @@ async def case_generator (message: Message, state: FSMContext):
 
     if weather_state == "холодно":
         if color == "Нейтральные цвета":
-            await message.answer(text = "Сегодня холодно, мать, ну его нахуй куда-то идти...да ещё и в нейтральном")
+            await message.answer(text = "Х.Н.]")
         elif color == "Яркие цвета":
-            await message.answer(text = "Сегодня холодно, мать, какой яркий, смотри чтоб молочница не вылезла")
+            await message.answer(text = "Х.Я.")
         else:
-            await message.answer(text = "В эту холодину контрастная я, девачьки")
+            await message.answer(text = "Х.К.")
     elif weather_state == "тепло":
         if color == "Нейтральные цвета":
-            await message.answer(text = "Хоть и прохладно, но пробздеться в нейтральном не помешает")
+            await message.answer(text = "Т.Н.")
         elif color == "Яркие цвета":
-            await message.answer(text = "Сегодня прохладно, мать,  смотри чтоб молочница не вылезла")
+            await message.answer(text = "Т.Я.")
         else:
-            await message.answer(text = "Сегодня прохладно, мать, контратная я, девачьки")
+            await message.answer(text = "Т.К.")
     else:
         if color == "Нейтральные цвета":
-            await message.answer(text = "Сегодня жара, мать, какой нейтральный, ты в чёрном сваришься")
+            await message.answer(text = "Ж.Н.")
         elif color == "Яркие цвета":
-            await message.answer(text = "Лучший выбор, в жарюку лютую напялить ярко-жёлтую авоську какую-то")
+            await message.answer(text = "Ж.Я.")
         else:
-            await message.answer(text = "Хоть и жара, но контраст одобряем")
+            await message.answer(text = "Ж.К.")
 
     
     

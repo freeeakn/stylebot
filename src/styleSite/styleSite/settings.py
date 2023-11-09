@@ -12,7 +12,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.115', 'lookovitsa.duckdns.org']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -99,7 +99,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static'
+STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(REAL_BASE_DIR, 'public_html', 'static')
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
