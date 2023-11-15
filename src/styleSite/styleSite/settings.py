@@ -12,7 +12,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.115', 'lookovitsa.duckdns.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
