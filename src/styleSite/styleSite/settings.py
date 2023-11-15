@@ -6,6 +6,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
@@ -98,8 +99,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-
+STATIC_URL = 'static'
+STATIC_ROOT = os.path.join(REAL_BASE_DIR, 'public_html', 'static')
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
