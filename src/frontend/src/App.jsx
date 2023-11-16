@@ -126,6 +126,7 @@ function App() {
                 <Route index path="/" element={<AppMain />} />
                 <Route path="/catalog" element={<AppCatalog onShowItem={onShowItem} chooseCategory={chooseCategory} allItems={items} items={currentItems} itemsSetter={setItems} onAdd={addToCart}/>} />
                 <Route path="/ai" element={<AppAi/>} />
+                <Route path="/admin" element={<AppMain />}  />
                 <Route path='*' element={<NotFound />}/>
               </Routes>
             </div>
