@@ -35,11 +35,11 @@ function App() {
 
   const fetchLogin = () => {
     const temp = JSON.parse(localStorage.getItem('login'))
-    console.log(temp)
+    // console.log(temp)
     if (temp) {
       axios.post('api/v1/login', temp)
           .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             setLogin(response.data);
           })
     }

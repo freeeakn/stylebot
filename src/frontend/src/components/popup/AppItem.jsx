@@ -17,7 +17,7 @@ function AppItem(props) {
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         exit={{opacity: 0}}
-        className="flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-20 overflow-auto"
+        className="flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-20 overflow-auto overflow-y-scroll"
         >
             <motion.div
                 initial={itemAnimation.hidden}
@@ -27,7 +27,7 @@ function AppItem(props) {
                     type: "spring",
                 }}
                 key={props.item.id}
-                className="bg-white rounded-2xl relative lg:w-1/3 flex flex-col gap-4 justify-center p-4 shadow-xl"
+                className="bg-white mt-16 rounded-2xl relative lg:w-1/3 flex flex-col gap-4 justify-center p-4 shadow-xl"
             >
                 <div className="flex flex-row">
                     <h3 className=" bg-slate-100 py-2 p-4 rounded-xl shadow-xl">{props.item.title}</h3>
@@ -47,9 +47,7 @@ function AppItem(props) {
                     ))
                 }
                 </div>
-                <div className="flex flex-row">
-                    <p className=" bg-slate-100 py-2 p-4 rounded-xl shadow-xl text-sm">{props.item.desc}</p>
-                </div>
+                <p className=" bg-slate-100 py-2 p-4 rounded-xl shadow-xl text-sm">{props.item.desc}</p>
                 <div className="flex flex-col gap-2 md:flex-row md:gap-0 justify-between ">
                     <p className="font-[600] bg-slate-100 p-2 rounded-xl shadow-xl">Price: {props.item.price}&#x24;</p>
                     <button onClick={() => props.onAdd(props.item)} className="flex items-center justify-center bg-slate-100 p-2 rounded-xl shadow-xl hover:bg-white hover:drop-shadow-xl duration-200">
