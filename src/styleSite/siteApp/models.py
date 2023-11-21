@@ -4,6 +4,7 @@ class Category(models.Model):
     key = models.CharField(
         verbose_name='Key of key category',
         max_length=10,
+        unique=True,
         default='etc',
     )
     name = models.CharField(

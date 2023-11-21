@@ -39,10 +39,11 @@ function App() {
     if (temp) {
       axios.post('api/v1/login', temp)
           .then(response => {
-            setLogin(response)
+            console.log(response.data);
+            setLogin(response.data);
           })
     }
-  }
+  };
 
   const fetchItems = () => {
       setIsLoading(true);
