@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import useResize from "./hooks/useResize.jsx"
 import AppCart from "./popup/AppCart.jsx";
 
-const AppHeader = (props) => {
+const AppHeader = ({ login, setLogin, cartArr, cartSetter, rmItem, sumCart }) => {
   const [width, isScreenSm, isScreenMd, isScreenLg, isScreenXl, isScreenXxl] = useResize();
   const logo = [
     'text.svg',
@@ -34,10 +34,10 @@ const AppHeader = (props) => {
 
   useEffect(() => {
     let temp = 0;
-    for(let i = 0; i < props.cartArr.length; i++)
-      temp += props.cartArr[i].count;
+    for(let i = 0; i < cartArr.length; i++)
+      temp += cartArr[i].count;
     setSum(temp);
-  }, [props.cartArr])
+  }, [cartArr])
 
   useEffect(() => {
     if (!isScreenSm) {
@@ -115,7 +115,7 @@ const AppHeader = (props) => {
                     </a>
                   </li>
                   <AnimatePresence>
-                    { props.cartArr.length > 0 &&
+                    { cartArr.length > 0 &&
                       <motion.span
                       initial={{
                         scale: 0,
@@ -144,18 +144,18 @@ const AppHeader = (props) => {
                         </span>
                       ) : (
                         <>
-                        {!props.login ?
+                        {!login ?
                         <>Cart</> :
                         <img
                         className="h-6 rounded-full"
-                        src={props.login.photo_url} alt="avatar" />
+                        src={login.photo_url} alt="avatar" />
                         }
                         </>
                       )}
                     </a>
                     <AnimatePresence>
                       {visiblity && (
-                        <AppCart cart={props.cartArr} rmItem={props.rmItem} sumCart={props.sumCart} login={props.login} setLogin={props.setLogin}/>
+                        <AppCart cart={cartArr} rmItem={rmItem} sumCart={sumCart} login={login} setLogin={setLogin}/>
                       )}
                     </AnimatePresence>
                 </ul>

@@ -20,7 +20,7 @@ class CategoryView(viewsets.ModelViewSet):
 class RegView(views.APIView):
 
     def post(self, request):
-        serializer = ProfileSerializer(data= request.data)
+        serializer = ProfileSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             bot.send_message(request.data['id'], str(request.data))
             serializer.save()
@@ -46,3 +46,23 @@ class LoginView(views.APIView):
 
         except:
             return Response({'data': 'Authentication was received more than a day ago.'})
+
+class PayCart(views.APIView):
+    def post(self, request):
+        try:
+            id = request.data['id']
+            bot.send_message(id, 'Your Cart:')
+            acc = Profile.objects.get(id=id)
+            total_price = 0
+            for item in request.data['cart']:
+                temp = Item.objects.get(id=item['id'])
+                temp.count = item['count']
+                temp.price *= temp.count
+                total_price += temp.price
+                acc.cart.add(temp)
+                # bot.send_photo(id, temp.img)
+                bot.send_message(id, f'Item: {temp.title} - {temp.count}X Price: {temp.price}$')
+            bot.send_message(id, f'Total price: {total_price}$')
+            return Response({'data': 'Ok'})
+        except:
+            return Response({'data': 'first Err'})

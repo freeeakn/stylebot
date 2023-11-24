@@ -25,6 +25,7 @@ urlpatterns = [
     path('api/v1/categories', CategoryView.as_view({'get': 'list'})),
     path('api/v1/reg', RegView.as_view()),
     path('api/v1/login', LoginView.as_view()),
+    path('api/v1/PayCart', PayCart.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

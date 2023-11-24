@@ -108,7 +108,7 @@ function AppCart(props) {
                     <h4>
                         {props.sumCart()}$
                     </h4>
-                    <AppPay />
+                    <AppPay cart={props.cart} user={props.login} />
                 </div>
             </div>
             </> :
