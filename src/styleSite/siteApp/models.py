@@ -4,6 +4,7 @@ class Category(models.Model):
     key = models.CharField(
         verbose_name='Key of key category',
         max_length=10,
+        unique=True,
         default='etc',
     )
     name = models.CharField(
@@ -11,6 +12,8 @@ class Category(models.Model):
         max_length=10,
         unique=True,
     )
+    def __str__(self):
+        return str(self.key)
 
 
 class Item(models.Model):
@@ -41,4 +44,10 @@ class Profile(models.Model):
     )
     username = models.CharField(
         verbose_name='UserName of the telegram profile',
+    )
+
+    cart = models.ManyToManyField(
+        Item,
+        verbose_name='arr of the cart items',
+        blank=True
     )

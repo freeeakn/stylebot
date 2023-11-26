@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 const AppLogin = ({setLogin}) => {
 
   const handleTelegramResponse = response => {
-    console.log(response);
+    // console.log(response);
     setLogin(response);
     localStorage.setItem('login', JSON.stringify(response));
     axios.post('api/v1/reg', response)
