@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import Mascot from './mascot';
+import Mascot from './Mascot';
 import catalog from '../assets/catalog.png'
 import { useEffect, useState } from 'react';
 
