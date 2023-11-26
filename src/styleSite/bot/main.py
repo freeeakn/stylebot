@@ -31,7 +31,7 @@ from config import (
     BOT_TOKEN,
 )
 from messages import MESSAGES
-
+from outfits import case_generator
 # ----------------------------------------------------------------
 
 bot = Bot(token=BOT_TOKEN)
@@ -66,6 +66,19 @@ def get_code(city):
     data = json.loads(response.text)
     code = data["cod"]
     return code
+
+def get_keyboard():
+            keyboard = ReplyKeyboardMarkup(
+                keyboard = [
+            [
+                KeyboardButton(text="Ещё один образ"),
+                KeyboardButton(text="Начать заново"),
+            ],
+            ],
+
+                resize_keyboard=True,
+            )
+            return keyboard
 
 
 
@@ -141,36 +154,23 @@ async def get_city (message: Message, state: FSMContext):
 
 
 @dp.message(Form.colour)
-async def case_generator (message: Message, state: FSMContext):
+async def case_generator_handler (message: Message, state: FSMContext):
     await message.answer(text="Формируется образ...", reply_markup=ReplyKeyboardRemove())
     color = message.text
     data = await state.get_data()
     weather_state = data.get('weather_state')
+    recommendation_parametr = (weather_state, color)
 
-    if weather_state == "холодно":
-        if color == "Нейтральные цвета":
-            await message.answer(text = "Х.Н.]")
-        elif color == "Яркие цвета":
-            await message.answer(text = "Х.Я.")
-        else:
-            await message.answer(text = "Х.К.")
-    elif weather_state == "тепло":
-        if color == "Нейтральные цвета":
-            await message.answer(text = "Т.Н.")
-        elif color == "Яркие цвета":
-            await message.answer(text = "Т.Я.")
-        else:
-            await message.answer(text = "Т.К.")
+    if recommendation_parametr in case_generator:
+        recomendation = case_generator[recommendation_parametr]
+        await message.answer(text=recomendation, reply_markup = get_keyboard())
     else:
-        if color == "Нейтральные цвета":
-            await message.answer(text = "Ж.Н.")
-        elif color == "Яркие цвета":
-            await message.answer(text = "Ж.Я.")
-        else:
-            await message.answer(text = "Ж.К.")
+        await message.answer(text = "Извините, но мы не смогли подобрать вам образы, попробуйте перезапустить бот и ввести параметры снова")
 
-    
-    
+ 
+
+
+
 async def main():
     await dp.start_polling(bot)
 
