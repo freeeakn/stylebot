@@ -31,7 +31,7 @@ from config import (
     BOT_TOKEN,
 )
 from messages import MESSAGES
-from outfits import case_generator
+from outfits import case_generator, get_random_outfit
 # ----------------------------------------------------------------
 
 bot = Bot(token=BOT_TOKEN)
@@ -67,21 +67,6 @@ def get_code(city):
     code = data["cod"]
     return code
 
-def get_keyboard():
-            keyboard = ReplyKeyboardMarkup(
-                keyboard = [
-            [
-                KeyboardButton(text="Ещё один образ"),
-                KeyboardButton(text="Начать заново"),
-            ],
-            ],
-
-                resize_keyboard=True,
-            )
-            return keyboard
-
-
-
 @dp.message(F.text == '/start')
 async def process_start_command(message: Message):
     await message.answer(text=MESSAGES['start'], parse_mode='html')
@@ -97,12 +82,15 @@ async def process_support_command(message: Message):
 class Form(StatesGroup):
     weather = State()
     colour = State()
+    one_more_out = State()
+    start_over = State()
 
 @dp.message(F.text == '/get_recommendations')
 async def get_rec_command(message: Message, state: FSMContext):
      await state.set_state(Form.weather)
      await message.answer(text=MESSAGES['get_recommendations'], parse_mode='html')
      await message.answer(text = "Введите ваш город")
+     
 
 
 @dp.message(F.text.casefold() == "отмена")
@@ -111,7 +99,7 @@ async def cancel_message(message: Message, state: FSMContext):
     if current_state is None:
         return
     logging.info("Cancelling state %r", current_state)
-    await state.clear()
+    await state.clear(state)
     await message.reply("Конечно, будем рады помочь вам в следующий раз!")
 
 
@@ -152,22 +140,71 @@ async def get_city (message: Message, state: FSMContext):
         ),
     )
 
-
 @dp.message(Form.colour)
 async def case_generator_handler (message: Message, state: FSMContext):
+    selected_color = message.text
+    await state.update_data(selected_color = selected_color)
     await message.answer(text="Формируется образ...", reply_markup=ReplyKeyboardRemove())
-    color = message.text
     data = await state.get_data()
     weather_state = data.get('weather_state')
+    data1 = await state.get_data()
+    color = data1.get('selected_color')
     recommendation_parametr = (weather_state, color)
 
     if recommendation_parametr in case_generator:
-        recomendation = case_generator[recommendation_parametr]
-        await message.answer(text=recomendation, reply_markup = get_keyboard())
+        outfit_list = case_generator[recommendation_parametr]
+        await state.update_data(outfit_list = outfit_list)
+        recomendation = get_random_outfit(outfit_list)  
+        await state.set_state(Form.one_more_out)
+        await message.answer(text=recomendation, 
+        reply_markup = ReplyKeyboardMarkup(
+            keyboard=[
+            [
+                KeyboardButton(text="Ещё один образ"),
+                KeyboardButton(text="Ввести новые данные"),
+            ],
+        ],
+        resize_keyboard=True,
+        ),
+    )
     else:
         await message.answer(text = "Извините, но мы не смогли подобрать вам образы, попробуйте перезапустить бот и ввести параметры снова")
 
- 
+
+@dp.message(lambda message: message.text == "Ещё один образ", Form.one_more_out)
+async def one_more_outfit (message: Message, state: FSMContext):
+    await message.answer(text="Формируется образ...", reply_markup=ReplyKeyboardRemove())
+    data = await state.get_data()
+    weather_state = data.get('weather_state')
+    data1 = await state.get_data()
+    color = data1.get('selected_color')
+    recommendation_parametr = (weather_state, color)
+
+    if recommendation_parametr in case_generator:
+        outfit_list = case_generator[recommendation_parametr]
+        recomendation = get_random_outfit(outfit_list)  
+        await message.answer(text=recomendation, 
+        reply_markup = ReplyKeyboardMarkup(
+            keyboard=[
+            [
+                KeyboardButton(text="Ещё один образ"),
+                KeyboardButton(text="Ввести новые данные"),
+            ],
+        ],
+        resize_keyboard=True,
+        ),
+    )
+    
+    else:
+        await message.answer(text = "Извините, но мы не смогли подобрать вам образы, попробуйте перезапустить бот и ввести параметры снова")
+
+
+@dp.message(lambda message: message.text == "Ввести новые данные")
+async def start_again (message: Message, state: FSMContext):
+    await state.clear()
+    await state.update_data(outfit_list=None, weather_state=None, color=None)
+    await message.answer("...", reply_markup=ReplyKeyboardRemove())
+    await get_rec_command(message, state)
 
 
 
