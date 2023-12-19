@@ -168,14 +168,15 @@ async def case_generator_handler (message: Message, state: FSMContext):
     data1 = await state.get_data()
     color = data1.get('selected_color')
     await message.answer(text="Формируется образ...", reply_markup=ReplyKeyboardRemove())
-      
+    response_text = ""
     response = await g4f.ChatCompletion.create_async(
-                model=g4f.models.gpt_35_long,
+                model=g4f.models.gpt_35_turbo_16k_0613,
                 messages = [{"role": "user", "content": f"На русском языке составить готовый лук для мужчины по следующим критериям: погодные условия — {weather_state}; цветовая гамма одежды — {color}. Вывод соообщения без вступительных слов списком и комментариями к каждому элементу одежды, использовать конкретные сочитающиеся цвета для элементов одежды."}],
             )
-    response_text = response
+    for i in response:
+        response_text+=i
     await state.set_state(Form.one_more_out)
-    await message.answer(text= response_text, 
+    await message.answer(text= response, 
         reply_markup = ReplyKeyboardMarkup(
             keyboard=[
             [
@@ -195,7 +196,7 @@ async def one_more_outfit (message: Message, state: FSMContext):
     data1 = await state.get_data()
     color = data1.get('selected_color') 
     response = await g4f.ChatCompletion.create_async(
-        model=g4f.models.gpt_35_long,
+        model=g4f.models.gpt_35_turbo_16k_0613,
         messages=[{"role": "user", "content": f"На русском языке составить готовый лук для мужчины по следующим критериям: погодные условия — {weather_state}; цветовая гамма одежды — {color}. Вывод соообщения без вступительных слов списком и с комментариями к каждому элементу одежды"}],
     )
     await message.answer(text=response, 
